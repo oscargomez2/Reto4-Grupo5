@@ -137,9 +137,9 @@
                 <div id="contenedorE">
                     <select class="form-select" id="filtroE" aria-label="Default select example">
                         <option value="">Seleccione el estado</option>
-                        <option value="aprobada">Aprobada</option>
+                        <option value="Aprobada">Aprobada</option>
                         <option value="rechazada">Rechazada</option>
-                        <option value="pendiente">Pendiente</option>
+                        <option value="Pendiente">Pendiente</option>
                     </select>
                     <button id="filtroEstado" name="guardar" onclick="hacerFiltros(this)" class="btn btn-primary ms-2">Consultar</button>
                 </div>
@@ -153,21 +153,18 @@
     <div class="container-fluid mt-5 cargar-clone">
         <div class="row">
             <div class="col">
-                <table class="table table-bordered text-center align-middle caption-top">
+                <table id="ocultarTabla" class="table table-bordered text-center align-middle caption-top">
                     <caption class="text-white text-center fs-1 text-uppercase mb-3">mis ordenes
                     </caption>
                     <thead class="table-success">
                         <tr>
-                            <th>Identificacion</th>
-                            <th>Nombres</th>
-                            <th>Email</th>
                             <th>Fecha</th>
-                            <th>No. Pedido</th>
+                            <th>No.Pedido</th>
                             <th>Estado</th>
                             <th>Pedido</th>
                         </tr>
                     </thead>
-                    <tbody class="color-f" id="infoOrdenes">
+                    <tbody class="color-f" id="infoOrdenesFiltro">
 
                     </tbody>
                 </table>

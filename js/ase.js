@@ -1,11 +1,15 @@
+// Global
+var datosUser;
+
 /**
  * Cuando inicia la pagina
  */
 $(document).ready(function () {
-    
+
     $("#contenedorF").hide();
     $("#contenedorE").hide();
-    var datosUser = localStorage.getItem('datos');
+    $("#ocultarTabla").hide();
+    datosUser = localStorage.getItem('datos');
     datosUser = JSON.parse(datosUser);
     var idUser = datosUser.id;
     var nombre = datosUser.name;
@@ -21,50 +25,87 @@ $(document).ready(function () {
 /**
  * Ver por fecha
  */
-function verFecha(){
+function verFecha() {
     $("#contenedorF").show();
 }
 
 /**
  * Ver por estado
  */
- function verEstado(){
+function verEstado() {
     $("#contenedorE").show();
 }
 
-
-
-
-function hacerFiltros(b){
+/**
+ * funcion para los filtros
+ * @param {*} b 
+ */
+function hacerFiltros(boton) {
     //alert("hola");
     var urlBase = "http://localhost:8080/api/order/";
     var complmento = "";
-    
-    
-        // Accion por defecto para Buttons;
-        switch( b.id ){
-           case "filtroFecha":
-               if($("#filtroF").val()==""){
-                    alert("SELECCIONE UNA FECHA")
-                } else {
+    var filtros;
+    var condicion = false;
+    switch (boton.id) {
+        case "filtroFecha":
+            if ($("#filtroF").val() == "") {
+                alert("SELECCIONE UNA FECHA")
+            } else {
+                condicion = true;
+                complmento = "date/"
+                filtros = $("#filtroF").val();
+            }
 
+            break;
+        case "filtroEstado":
+            
+            if ($("#filtroE").val() == "") {
+                alert("SELECCIONE EL ESTADO")
+            } else {
+                condicion = true;
+                complmento = "state/"
+                filtros = $("#filtroE").val();
+            }
+            break;
+
+    }
+    if (condicion == true) {
+        $.ajax({
+            url: urlBase + complmento + filtros + "/" + datosUser.id,
+            type: 'GET',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function (order) {
+                $("#infoOrdenesFiltro").empty();
+                if (order.length == 0) {
+                    let row = $("<tr>");
+                    row.append($("<td colspan='4' class='fw-bolder text-uppercase'>").text("no hay registros"));
+                    $("#infoOrdenesFiltro").append(row);
+                } else {
+                    order.forEach(element => {
+                        let row = $("<tr>");
+                        row.append($("<td>").text(element.registerDay.split("T")[0]));
+                        row.append($("<td>").text(element.id));
+                        row.append($("<td>").text(element.status));
+                        row.append($("<td class='px-0'>"
+                                    +"<button class='btn btn-primary py-1 px-4 ms-2' onclick='verDetalle(" + element.id + ")'><i class='bi bi-eye me-2'></i>Ver Detalle</button>"));
+                        $("#infoOrdenesFiltro").append(row);
+                    });
+                    $("#contenedorF").hide();
+                    $("#contenedorE").hide();
+                    $("#ocultarTabla").show();
                 }
-
-                break;
-           case "filtroEstado":
-                          // entra aqui si papel........ 
-                if($("#filtroE").val()==""){
-                    alert("SELECCIONE EL ESTADO")
-                } else {
-
-                }  
-                break;
-           
-        }
-
+            },
+            error: function (result) {
+                var row = $("<tr>");
+                row.append($("<td colspan='4' class='fw-bolder text-uppercase'>").text("no se pudo consultar las ordenes"));
+                $("#infoOrdenesFiltro").append(row);
+            }
+        }).fail(function () {
+            alert("Hubo un error en la aplicación, intentelo más tarde.");
+        });
+    }
 }
-
-
 
 /**
  * cerrar sesion
@@ -74,7 +115,6 @@ $("#close").click(function () {
     localStorage.removeItem('datos');
     window.location.href = "../index.html";
 });
-
 
 /**
  * cargar perfil asesor comercial
@@ -218,7 +258,7 @@ function registrarOrden() {
                                                 success: function (order) {
                                                     alert("La orden fue registrada con éxito");
                                                     $(":input").val("");
-                                                    $( ":input:checkbox" ).prop( "checked", false );
+                                                    $(":input:checkbox").prop("checked", false);
                                                     $("#idOrden").focus();
                                                     console.log(order);
                                                 }
