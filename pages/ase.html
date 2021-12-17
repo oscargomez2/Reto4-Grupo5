@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Asesor Comercial</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="bg-dark">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-3 pt-2">
+                    <a href="/">
+                        <img class="color" src="../logo/Sin título-9.svg" alt="">
+                    </a>
+
+                </div>
+                <div id="posi" class="col-8 text-end">
+                    <span id="name"></span>
+                </div>
+                <div class="col-1 text-end">
+                    <i id="close" class="bi bi-box-arrow-left p-0" style="font-size: 3rem; color: deeppink;"
+                        title="Cerrar Sesion"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Fin header -->}
+
+    <!-- perfil -->
+    <div class="container-fluid espacio">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered text-center align-middle caption-top">
+                    <caption class="text-white text-center fs-1 text-uppercase mb-3">My Perfil</caption>
+                    <thead class="table-success">
+                        <tr>
+                            <th>Identificacion</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Perfil</th>
+                            <th>Zona</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white color-f" id="infoPerfil">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- fin perfil -->
+
+    <!-- productos -->
+    <div id="cpro" class="container-fluid mt-5">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered text-center align-middle caption-top">
+                    <caption class="text-white text-center fs-1 text-uppercase mb-3">Productos</caption>
+                    <thead class="table-success">
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Sistema Operativo</th>
+                            <th>Procesador</th>
+                            <th>Memoria</th>
+                            <th>Disco Duro</th>
+                            <th>Descripcion</th>
+                            <th>Precio</th>
+                            <th>Foto</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-white color-f" id="infoClone">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- fin productos -->
+
+    <!--Boton abrir modal-->
+
+    <div class="container-fluid carrito mt-5">
+        <button class="btn btn-primary px-3" data-bs-toggle="modal" data-bs-target="#ModalRegistrarOrden"
+            onclick="listaProductos()" style="font-size: 1.2rem;">
+            <i class="bi bi-cart-plus-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
+            Registrar Orden
+        </button>
+    </div>
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item mx-5">
+            <!--<a class="nav-link active" aria-current="page" href="#">Active</a>-->
+            <button class="px-3 filtros"
+                onclick="verFecha()">
+                <i class="bi bi-calendar-event-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
+                Ver Por Fecha
+            </button>
+        </li>
+        <li class="nav-item mx-5">
+            <!--<a class="nav-link" href="#">Link</a>-->
+            <button class="px-3 filtros" 
+                onclick="verEstado()">
+                <i class="bi bi-check-square-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
+                Ver Por Estado
+            </button>
+        </li>
+        <li class="nav-item mx-5">
+            <button class="px-3 filtros" 
+                onclick="listaProductos()">
+                <i class="bi bi-eye-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
+                Ver Todas
+            </button>
+        </li>
+        
+    </ul>
+    <div class="container-fluid fecha">
+        <div class="row">
+            <div class="col-5" >
+                <div id="contenedorF">
+                    <button id="filtroFecha" class="btn btn-primary ms-2" onclick="hacerFiltros(this)" name="editar">Consultar</button>
+                    <input type="date" class="form-control" id="filtroF" value="">
+                </div>
+                
+                
+            </div>
+            <div class="col-5">
+                <div id="contenedorE">
+                    <select class="form-select" id="filtroE" aria-label="Default select example">
+                        <option value="">Seleccione el estado</option>
+                        <option value="aprobada">Aprobada</option>
+                        <option value="rechazada">Rechazada</option>
+                        <option value="pendiente">Pendiente</option>
+                    </select>
+                    <button id="filtroEstado" name="guardar" onclick="hacerFiltros(this)" class="btn btn-primary ms-2">Consultar</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- ordenes asesores comerciales -->
+    <div class="container-fluid mt-5 cargar-clone">
+        <div class="row">
+            <div class="col">
+                <table class="table table-bordered text-center align-middle caption-top">
+                    <caption class="text-white text-center fs-1 text-uppercase mb-3">mis ordenes
+                    </caption>
+                    <thead class="table-success">
+                        <tr>
+                            <th>Identificacion</th>
+                            <th>Nombres</th>
+                            <th>Email</th>
+                            <th>Fecha</th>
+                            <th>No. Pedido</th>
+                            <th>Estado</th>
+                            <th>Pedido</th>
+                        </tr>
+                    </thead>
+                    <tbody class="color-f" id="infoOrdenes">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- fin ordenes asesores comerciales -->
+
+    <!--Modal de orden-->
+    <div class="modal fade" id="ModalRegistrarOrden" aria-hidden="true" aria-labelledby="ModalRegistrarOrden"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Registrar Pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-secondary bg-opacity-25">
+                    <div class="container-fluid">
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="idOrden" class="form-label">Id:</label>
+                                    <input type="number" class="form-control" id="idOrden" placeholder="Id Orden">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="fecha" class="form-label">Fecha del pedido:</label>
+                                    <input type="date" class="form-control" id="fecha">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 justify-content-md-center">
+                            <table class="table table-bordered text-center align-middle caption-top">
+                                <caption class="text-black text-center fs-6 text-uppercase mb-3">Señale en la casilla
+                                    check los productos que irán en la orden y su cantidad</caption>
+                                <thead class="table-success">
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>Foto</th>
+                                        <th>Check</th>
+                                        <th>Cantidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-white color-f" id="infoCloneOrden">
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnRegistrarOrden" onclick="registrarOrden()" class="btn btn-success px-5 me-5">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin modal orden-->
+
+    
+
+    <!-- FOOTER -->
+    <footer class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-end text-white fs-6 mt-4 mb-3">
+                    <span>Oscar Fabian Gomez Jurado</span><br>
+                    <span>Marisol Rodriguez Gutierrez</span><br>
+                    <span>Nicolas Albarracin Pineros</span><br><br>
+
+                    <span class="fs-6">Copyright&copy; 2021 Todos los derechos reservados</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin footer -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+        </script>
+    <script src="../js/ase.js" type="text/javascript"></script>
+    <script>
+        let firstData = null;
+        //console.log(localStorage.getItem("object_name"))
+        //if para verificar que si se inicio sesion
+        if (localStorage.getItem("datos") != null) {
+            let myData = localStorage.getItem("datos");
+            firstData = JSON.parse(myData);
+            if (firstData.type == "ASE" || firstData.type == "asesor") {
+                console.log("Ingresó correctamente");
+            } else {
+                cerrar();
+            }
+        } else {
+            cerrar();
+        }
+
+        function cerrar() {
+            $(document).ready(function () {
+                localStorage.removeItem('datos');
+                $(location).attr('href', "../index.html");
+            });
+        }
+    </script>
+</body>
+
+</html>

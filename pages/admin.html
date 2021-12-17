@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/estilos.css">
+    <title>Administrador</title>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="bg-dark">
+        
+            <div class="container">
+                <div class="row mb-2">
+                    <div class="col-3 pt-2">
+                        <a href="/">
+                            <img class="color" src="../logo/Sin título-9.svg" alt="Logo empresa">
+                        </a>
+                    </div>
+                    <div class="col-8 text-end">
+                        <ul class="m-0 pt-4">
+    
+                            <li class="border border-info d-inline p-2 rounded-3 mx-2"><a href=""
+                                    class="text-decoration-none text-white" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalToggle2">Registrar usuarios</a></li>
+                            <li class="border border-info d-inline p-2 rounded-3 mx-2"><a href=""
+                                    class="text-decoration-none text-white" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModalToggle3">Registrar Productos</a></li>
+                            
+                            <!--<li id="name" class="text-white border border-info d-inline p-2 rounded-3 mx-2">GOKU</li>-->
+                            <!--<li id="name" class="border border-info d-inline p-2 rounded-3 mx-2 text-white"></li>-->
+                            <li id="nameUser" class="text-white border border-info d-inline p-2 rounded-3 ms-5"></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col text-end">
+                        <i id="close" class="bi bi-box-arrow-left p-0" style="font-size: 3rem; color: deeppink;"
+                        title="Cerrar Sesion"></i>
+                    </div>
+                </div>
+            </div>
+        
+        
+    </header>
+
+    <!-- Fin header -->
+
+    <!-- Tablas -->
+    <div class="container-fluid espacio">
+        <div class="row">
+            <div class="col">
+                <!--<h4>Informacion de los Registros</h4>-->
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle caption-top">
+                        <caption class="text-white text-center fs-1 text-uppercase mb-3">Informacion de los usuarios
+                        </caption>
+                        <thead class="table-success">
+                            <tr>
+                                <th>Identificacion</th>
+                                <th>Nombre</th>
+                                <th>Direccion</th>
+                                <th>Celular</th>
+                                <th>Email</th>
+                                <th>Contraseña</th>
+                                <th>Zona</th>
+                                <th>Tipo</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white color-f" id="infoUsers">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <!--<h4>Informacion de los Productos</h4>-->
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center align-middle caption-top">
+                        <caption class="text-white text-center fs-1 text-uppercase mb-3">Informacion de los Productos
+                        </caption>
+                        <thead class="table-success">
+                            <tr>
+                                <th>Marca</th>
+                                <th>Procesador</th>
+                                <th>S.Operativo</th>
+                                <th>Descripcion</th>
+                                <th>Memoria</th>
+                                <th>Almacenamiento</th>
+                                <th>Stock</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Foto</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white color-f" id="infoProductos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin tablas -->
+
+    <!-- FOOTER -->
+    <footer class="bg-dark">
+        <div class="container">
+            <div class="row">
+                <div class="col text-end text-white fs-6 mt-4 mb-3">
+                    <span>Oscar Fabian Gomez Jurado</span><br>
+                    <span>Marisol Rodriguez Gutierrez</span><br>
+                    <span>Nicolas Albarracin Pineros</span><br><br>
+                    
+                    <span class="fs-6">Copyright&copy; 2021 Todos los derechos reservados</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Fin footer -->
+
+    <!-- Modal registro -->
+    <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Registrar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-secondary bg-opacity-25">
+                    <div class="container-fluid">
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="id" class="form-label">Id:</label>
+                                    <input type="number" class="form-control" id="id" placeholder="#">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="cedula" class="form-label">Cedula:</label>
+                                    <input type="text" class="form-control" id="cedula" placeholder="C.C">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="nombre" class="form-label">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Nombre">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="cumpleaños" class="form-label">Cumpleaños:</label>
+                                    <input type="date" class="form-control" id="cumpleaños">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="mesnacimiento" class="form-label">Mes Nacimiento:</label>
+                                    <input type="text" class="form-control" id="mesnacimiento" placeholder="Mes Nacimiento">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="direccion" class="form-label">Direccion:</label>
+                                    <input type="text" class="form-control" id="direccion" placeholder="Direccion">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="celular" class="form-label">Celular:</label>
+                                    <input type="text" class="form-control" id="celular" placeholder="Celular">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="email" class="form-label">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Email">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="contraseña" class="form-label">Contraseña:</label>
+                                    <input type="password" class="form-control" id="contraseña" placeholder="Contraseña">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="zona" class="form-label">Zona:</label>
+                                    <input type="text" class="form-control" id="zona" placeholder="Zona">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="fw-bold">
+                                <label for="tipo" class="form-label">Tipo de Usuario:(Seleccione una de las siguientes
+                                    opciones)</label>
+                                <select class="form-control" id="tipo">
+                                    <option>ADM</option>
+                                    <option>COORD</option>
+                                    <option>ASE</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnActualizar" onclick="actualizarUser();" class="btn btn-success px-5 me-5">
+                        Actualizar
+                    </button>
+                    <button class="btn btn-success px-5 me-5" id="btnRegistrar">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin modal registro  -->
+
+
+    <!-- Modal Productos -->
+    <div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Registrar Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-secondary bg-opacity-25">
+                    <div class="container-fluid">
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="idClone" class="form-label">Id:</label>
+                                    <input type="number" class="form-control" id="idClone" placeholder="Id producto">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="marca" class="form-label">Marca:</label>
+                                    <input type="text" class="form-control" id="marca" placeholder="Marca">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="procesador" class="form-label">Procesador:</label>
+                                    <input type="text" class="form-control" id="procesador" placeholder="Procesador">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="os" class="form-label">S.Operativo:</label>
+                                    <input type="text" class="form-control" id="os" placeholder="S.Operativo">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="descripcion" class="form-label">Descripcion:</label>
+                                    <input type="text" class="form-control" id="descripcion" placeholder="Descripcion">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="memoria" class="form-label">Memoria:</label>
+                                    <input type="text" class="form-control" id="memoria" placeholder="Memoria">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="almacenamiento" class="form-label">Almacenamiento:</label>
+                                    <input type="email" class="form-control" id="almacenamiento"
+                                        placeholder="Almacenamiento">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="password" class="form-label">Stock:</label>
+                                    <select id="stock" class="form-select">
+                                        <option value="">Disponibilidad</option>
+                                        <option value="true">Si</option>
+                                        <option value="false">No</option>
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="precio" class="form-label">Precio:</label>
+                                    <input type="number" class="form-control" id="precio" placeholder="Precio">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="cantidad" class="form-label">Cantidad:</label>
+                                    <input type="number" class="form-control" id="cantidad" placeholder="Cantidad">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="foto" class="form-label">Url Foto:</label>
+                                    <input type="text" class="form-control" id="foto" placeholder="Imagen del Producto">
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnActualizarClone" onclick="actualizarProducto();" class="btn btn-success px-5 me-5">
+                        Actualizar
+                    </button>
+                    <button class="btn btn-success me-5 px-5" id="btnRegistrarClone">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fin modal registro  -->
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
+        </script>
+    <script src="../js/admin.js" type="text/javascript"></script>
+    <script>
+        let firstData = null;
+        //console.log(localStorage.getItem("object_name"))
+        //if para verificar que si se inicio sesion
+        if (localStorage.getItem("datos") != null) {
+            let myData = localStorage.getItem("datos");
+            firstData = JSON.parse(myData);
+            if (firstData.type == "ADM" || firstData.type == "administrador") {
+                console.log("Ingresó correctamente");
+            } else {
+                cerrar();
+            }
+        } else {
+            cerrar();
+        }
+
+        function cerrar() {
+            $(document).ready(function () {
+                localStorage.removeItem('datos');
+                $(location).attr('href', "../index.html");
+            });
+        }
+    </script>
+</body>
+
+</html>
