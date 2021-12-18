@@ -107,6 +107,25 @@ function hacerFiltros(boton) {
     }
 }
 
+function verDetalle(id){
+    $.ajax({
+        url: 'http://localhost:8080/api/order/' + id,
+        type: 'GET',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (order) {
+            $('#modalDetalles').modal('show');
+            $("#idDet").val(order.id);
+            $("#fechaDet").val(order.registerDay.split("T")[0]);
+            $("#aseDet").val(order.salesMan.name);
+            var productos = order.products
+            $("#prodDet").val(Object.keys(productos).length);
+        }
+    }).fail(function () {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
+    });
+}
+
 /**
  * cerrar sesion
  */
@@ -241,7 +260,7 @@ function registrarOrden() {
                                     contentType: 'application/json',
                                     dataType: 'json',
                                     success: function (order) {
-                                        if (order.id == null) {
+                                        if (order == null) {
                                             $.ajax({
                                                 url: 'http://localhost:8080/api/order/new',
                                                 type: 'POST',

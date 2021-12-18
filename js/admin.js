@@ -259,7 +259,7 @@ $("#btnRegistrar").click(function () {
             contentType: 'application/json',
             dataType: 'json',
             success: function (user) {
-                if (user.id == null) {
+                if (user == null) {
                     $.ajax({
                         url: 'http://localhost:8080/api/user/new',
                         data: JSON.stringify({
@@ -287,7 +287,7 @@ $("#btnRegistrar").click(function () {
                                 //$("#email").focus();
                             } else {
                                 alert('Cuenta creada de forma correcta.');
-                                //$("#exampleModalToggle2").modal("hide");
+                                $("#exampleModalToggle2").modal("hide");
                                 $(':input').val('');
                                 $("#id").focus();
                                 //consultarUsers();

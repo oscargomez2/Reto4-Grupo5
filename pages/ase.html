@@ -100,38 +100,36 @@
     <ul class="nav justify-content-center">
         <li class="nav-item mx-5">
             <!--<a class="nav-link active" aria-current="page" href="#">Active</a>-->
-            <button class="px-3 filtros"
-                onclick="verFecha()">
+            <button class="px-3 filtros" onclick="verFecha()">
                 <i class="bi bi-calendar-event-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
                 Ver Por Fecha
             </button>
         </li>
         <li class="nav-item mx-5">
             <!--<a class="nav-link" href="#">Link</a>-->
-            <button class="px-3 filtros" 
-                onclick="verEstado()">
+            <button class="px-3 filtros" onclick="verEstado()">
                 <i class="bi bi-check-square-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
                 Ver Por Estado
             </button>
         </li>
         <li class="nav-item mx-5">
-            <button class="px-3 filtros" 
-                onclick="listaProductos()">
+            <button class="px-3 filtros" onclick="listaProductos()">
                 <i class="bi bi-eye-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
                 Ver Todas
             </button>
         </li>
-        
+
     </ul>
     <div class="container-fluid fecha">
         <div class="row">
-            <div class="col-5" >
+            <div class="col-5">
                 <div id="contenedorF">
-                    <button id="filtroFecha" class="btn btn-primary ms-2" onclick="hacerFiltros(this)" name="editar">Consultar</button>
+                    <button id="filtroFecha" class="btn btn-primary ms-2" onclick="hacerFiltros(this)"
+                        name="editar">Consultar</button>
                     <input type="date" class="form-control" id="filtroF" value="">
                 </div>
-                
-                
+
+
             </div>
             <div class="col-5">
                 <div id="contenedorE">
@@ -141,13 +139,14 @@
                         <option value="rechazada">Rechazada</option>
                         <option value="Pendiente">Pendiente</option>
                     </select>
-                    <button id="filtroEstado" name="guardar" onclick="hacerFiltros(this)" class="btn btn-primary ms-2">Consultar</button>
+                    <button id="filtroEstado" name="guardar" onclick="hacerFiltros(this)"
+                        class="btn btn-primary ms-2">Consultar</button>
                 </div>
-                
+
             </div>
         </div>
     </div>
-    
+
 
     <!-- ordenes asesores comerciales -->
     <div class="container-fluid mt-5 cargar-clone">
@@ -233,7 +232,53 @@
     </div>
     <!--Fin modal orden-->
 
-    
+
+    <!--Inicio Modal detalles-->
+    <div class="modal fade" id="modalDetalles" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalToggleLabel2">Detalle orden</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body bg-secondary bg-opacity-25">
+                    <div class="container-fluid">
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="id" class="form-label">Id:</label>
+                                    <input type="text" class="form-control" id="idDet" disabled=»disabled»>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="fecha" class="form-label">Fecha:</label>
+                                    <input type="text" class="form-control" id="fechaDet" disabled=»disabled»>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 justify-content-md-center">
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="vendedor" class="form-label">Vendedor:</label>
+                                    <input type="text" class="form-control" id="aseDet" disabled=»disabled»>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">
+                                    <label for="cedula" class="form-label">Cantidad de productos:</label>
+                                    <input type="text" class="form-control" id="prodDet" disabled=»disabled»>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Fin Modal detalles-->
 
     <!-- FOOTER -->
     <footer class="bg-dark">
