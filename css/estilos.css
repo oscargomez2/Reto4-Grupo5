@@ -115,6 +115,7 @@ footer {
     border-radius: 0;
     border-bottom: 1px solid dodgerblue;
     color: white;
+    /*margin-right: 5rem;*/
 }
 
 .fecha {
@@ -124,16 +125,26 @@ footer {
 }
 
 #filtroF {
-    width: 70%;
-    float: left;
+    width: 50%;
+    float: right;
+}
+
+
+#filtroFecha {
+    float: right;
 }
 
 #filtroE {
     width: 42%;
     float: left;
-    margin-right: 0rem;
+    margin-left: 4rem;
 }
 
-.col-5 {
-    padding-right: 1rem;
+.col-6 {
+    /*padding-right: 1rem;*/
+    float: right;
+}
+
+.margin {
+    margin: 0 5rem;
 }

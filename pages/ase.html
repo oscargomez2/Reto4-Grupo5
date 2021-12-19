@@ -98,7 +98,7 @@
     </div>
 
     <ul class="nav justify-content-center">
-        <li class="nav-item mx-5">
+        <li class="nav-item px-5 margin">
             <!--<a class="nav-link active" aria-current="page" href="#">Active</a>-->
             <button class="px-3 filtros"
                 onclick="verFecha()">
@@ -106,7 +106,7 @@
                 Ver Por Fecha
             </button>
         </li>
-        <li class="nav-item mx-5">
+        <li class="nav-item px-5 margin">
             <!--<a class="nav-link" href="#">Link</a>-->
             <button class="px-3 filtros" 
                 onclick="verEstado()">
@@ -114,26 +114,19 @@
                 Ver Por Estado
             </button>
         </li>
-        <li class="nav-item mx-5">
-            <button class="px-3 filtros" 
-                onclick="listaProductos()">
-                <i class="bi bi-eye-fill pe-2" style="font-size: 1.5rem; color: white;"></i>
-                Ver Todas
-            </button>
-        </li>
+        
         
     </ul>
     <div class="container-fluid fecha">
         <div class="row">
-            <div class="col-5" >
+            <div class="col-6" >
                 <div id="contenedorF">
                     <button id="filtroFecha" class="btn btn-primary ms-2" onclick="hacerFiltros(this)" name="editar">Consultar</button>
                     <input type="date" class="form-control" id="filtroF" value="">
                 </div>
                 
-                
             </div>
-            <div class="col-5">
+            <div class="col-6">
                 <div id="contenedorE">
                     <select class="form-select" id="filtroE" aria-label="Default select example">
                         <option value="">Seleccione el estado</option>
