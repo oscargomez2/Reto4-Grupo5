@@ -20,6 +20,16 @@ $(document).ready(function () {
     getPerfil(idUser);
     getClones();
     listaProductos();
+    hacerFiltros(this);
+});
+
+/**
+ * funcion cuando el modal de order se cierra
+ */
+$("#ModalRegistrarOrden").on('hidden.bs.modal', function () {
+    //alert("Esta accion se ejecuta al cerrar el modal");
+    
+    hacerFiltros(this);
 });
 
 /**
@@ -43,8 +53,8 @@ function verEstado() {
 function hacerFiltros(boton) {
     //alert("hola");
     var urlBase = "http://localhost:8080/api/order/";
-    var complmento = "";
-    var filtros;
+    var complemento = "";
+    var filtros = "";
     var condicion = false;
     switch (boton.id) {
         case "filtroFecha":
@@ -52,7 +62,7 @@ function hacerFiltros(boton) {
                 alert("SELECCIONE UNA FECHA")
             } else {
                 condicion = true;
-                complmento = "date/"
+                complemento = "date/"
                 filtros = $("#filtroF").val();
             }
 
@@ -63,15 +73,18 @@ function hacerFiltros(boton) {
                 alert("SELECCIONE EL ESTADO")
             } else {
                 condicion = true;
-                complmento = "state/"
+                complemento = "state/"
                 filtros = $("#filtroE").val();
             }
             break;
-
+        default:
+            //alert("ninguno");
+            condicion = true;
+            complemento = "salesman";
     }
     if (condicion == true) {
         $.ajax({
-            url: urlBase + complmento + filtros + "/" + datosUser.id,
+            url: urlBase + complemento + filtros + "/" + datosUser.id,
             type: 'GET',
             contentType: 'application/json',
             dataType: 'json',
@@ -105,6 +118,44 @@ function hacerFiltros(boton) {
             alert("Hubo un error en la aplicación, intentelo más tarde.");
         });
     }
+}
+
+/**
+ * Ver detalle de la orden
+ * @param {*} idOrder 
+ */
+ function verDetalle(idOrder) {
+    $.ajax({
+        url: 'http://localhost:8080/api/order/' + idOrder,
+        type: 'GET',
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (order) {
+            $("#listaProductosOrdenAsesor").empty();           
+            let p = order.products;
+            let q = order.quantities;         
+            for(const [key, value] of Object.entries(p)){
+                let row = $("<tr>");
+                row.append($("<td>").text(p[key].id));
+                row.append($("<td>").text(p[key].brand));
+                row.append($("<td>").text(p[key].procesor));
+                row.append($("<td>").text(p[key].os));
+                row.append($("<td>").text(p[key].description));
+                row.append($("<td>").text(p[key].price));
+                row.append($("<td>").text(q[key]));
+                row.append($("<td>").append("<img src='" + p[key].photography + "' alt='pc' width='80%' height='50px'>"));
+                $("#listaProductosOrdenAsesor").append(row);
+            }
+        },
+        error: function (result) {
+            var row = $("<tr>");
+            row.append($("<td colspan='8' class='fw-bolder text-uppercase'>").text("no se encontro la orden"));
+            $("#listaProductosOrdenAsesor").append(row);
+        }
+    }).fail( function() {
+        alert("Hubo un error en la aplicación, intentelo más tarde.");
+    });
+    $("#detalleOrdenAse").modal("show");
 }
 
 /**
